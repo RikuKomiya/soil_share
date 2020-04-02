@@ -5,6 +5,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
+    volumes:
+      - soil-db:/var/lib/mysql
     ports:
       - "3308:3306"
 
@@ -20,3 +22,4 @@ services:
       - db
 volumes: 
   bundle:
+  soil-db:
