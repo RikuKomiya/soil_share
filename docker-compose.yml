@@ -16,10 +16,16 @@ services:
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
+    environment: 
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
     ports:
       - "8080:3000"
     links:
       - db
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none  
 volumes: 
   bundle:
   soil-db:
