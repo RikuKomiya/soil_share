@@ -4,5 +4,8 @@
     %span.navbar-toggler-icon
   #navbarNavAltMarkup.collapse.navbar-collapse
     .navbar-nav
-      = link_to 'ログイン', new_user_session_path, class: 'nav-item nav-link'
-      = link_to '新規登録', new_user_registration_path, class: 'nav-item nav-link'
+      - if current_user
+        = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-item nav-link'
+      - else
+        = link_to 'ログイン', new_user_session_path, class: 'nav-item nav-link'
+        = link_to '新規登録', new_user_registration_path, class: 'nav-item nav-link'
