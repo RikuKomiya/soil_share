@@ -1,0 +1,37 @@
+= title '住所登録'
+.card
+  .card-body
+    =form_for @address,html: { class: 'needs-validation', novalidate: true} do |f|
+      .form-group
+        = f.label :post_code
+        = f.text_field :post_code, class: 'form-control', minlength: 7, maxlength: 7, required: true, pattern: '^[0-9]{7}$'
+        .invalid-feedback 正しい郵便番号を入力してください
+        %small.form-text.text-muted　0000000（半角・ハイフンなし）
+      .form-group
+        = f.label :prefecture_name
+        = f.collection_select :prefecture_name, JpPrefecture::Prefecture.all, :name, :name,{prompt: ""}, {class: 'form-control',include_blank: true, required: true}
+        .invalid-feedback 都道府県を入力してください
+      .form-group
+        = f.label :address_city
+        = f.text_field :address_city, class: 'form-control', required: true
+        .invalid-feedback 市区町村を入力してください
+      .form-group
+        = f.label :address_street
+        = f.text_field :address_street, class: 'form-control', required: true
+        .invalid-feedback 番地を入力してください
+      .form-group
+        = f.label :address_building
+        = f.text_field :address_building, class: 'form-control'
+      = f.submit "保存", class: 'btn btn-primary'
+
+=content_for :footer do
+  = javascript_include_tag 'form_validation.js'
+  :javascript
+    $("#address_post_code").jpostal({
+    postcode : [ "#address_post_code" ],
+    address  : {
+                  "#address_prefecture_name" : "%3",
+                  "#address_address_city"            : "%4",
+                  "#address_address_street"          : "%5%6%7"
+                }
+    })

@@ -22,6 +22,8 @@
 #
 FactoryBot.define do
   factory :user do
-    
+    email { "hoge@hoge" }
+    password { "password" }
+    confirmed_at { Time.current }
   end
 end

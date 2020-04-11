@@ -64,4 +64,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
   config.include Systems::SessionHelpers, type: :system
+  config.include Warden::Test::Helpers
+  # config.include Devise::Test::IntegrationHelpers, type: :system
 end

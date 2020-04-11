@@ -33,7 +33,7 @@ require 'rails_helper'
     expect(page).to have_content("パスワード（確認用）とパスワードの入力が一致しません")
   end
 
-  scenario "確認用パスワードとパスワードが一致しないと登録できない", forcus: true  do
+  scenario "確認用パスワードとパスワードが一致しないと登録できない" do
     sign_up_with("test@example.com", "password", "mismatch")
 
     expect(page).to have_content("パスワード（確認用）とパスワードの入力が一致しません")
