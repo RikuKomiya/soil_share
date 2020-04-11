@@ -1,0 +1,25 @@
+= title '住所一覧'
+.card-columns
+  -@addresses.each do |address|
+    .card
+      .card-body  
+        = link_to address_path(address),method: :delete, class: 'close' do
+          %span &times;
+          
+        %h5.card-title= Address.human_attribute_name(:post_code)   
+        %p.card-text=address.post_code
+
+        %h5.card-title= Address.human_attribute_name(:prefecture_name)
+        %p.card-text=address.prefecture_name
+
+        %h5.card-title= Address.human_attribute_name(:address_city)
+        %p.card-text=address.address_city
+
+        %h5.card-title= Address.human_attribute_name(:address_street)
+        %p.card-text=address.address_street
+
+        - if address.address_building.present?
+          %h5.card-title= Address.human_attribute_name(:address_building)
+          %p.card-text=address.address_building
+
+        = link_to '編集', edit_address_path(address), class: 'btn btn-outline-primary'

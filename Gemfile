@@ -27,6 +27,9 @@ gem 'activeadmin'
 gem 'ridgepole'
 gem 'annotate'
 gem "haml-rails", "~> 2.0"
+gem 'simple_form'
+gem 'jp_prefecture'
+gem 'bootstrap', '~> 4.1.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
