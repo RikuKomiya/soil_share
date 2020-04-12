@@ -15,7 +15,7 @@
           = f.check_box :remember_me, class: 'form-check-input'
           = f.label :remember_me, class: 'form-check-label'
       .actions.text-center
-        = f.submit "ログイン", class: 'btn btn-primary'
+        = f.submit "ログイン", class: 'btn btn-outline-primary'
     = render "devise/shared/links"
 - content_for :footer do
   = javascript_include_tag 'form_validation.js'
