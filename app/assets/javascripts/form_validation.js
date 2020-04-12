@@ -9,3 +9,19 @@ var validation = Array.prototype.filter.call(forms, function(form) {
     form.classList.add('was-validated');
   }, false);
 });
+
+function resetValidity(e) {
+  var target = $(`#${e.id}`)
+  target.removeClass('is-invalid')
+  target.parent().find('.error-message').hide()
+}
+
+function CheckPassword(confirm){
+  var password = $('#user_password').val();
+  var confirmation = $('#user_password_confirmation').val();
+  if(password != confirmation){
+    confirm.setCustomValidity("error");
+  }else{
+    confirm.setCustomValidity('');
+  }
+}

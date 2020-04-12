@@ -1,21 +1,30 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+=title '新規登録'
+.card
+  .card-body
+    = form_for(resource, as: resource_name, url: registration_path(resource_name),html: { class: 'needs-validation', novalidate: true}) do |f|
+      -# = render "devise/shared/error_messages", resource: resource
+      .field
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: "email",class:'form-control' + error_class(resource, :email), required: true, pattern: "^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$", oninput: "resetValidity(this)"
+        - unless error_class(resource, :email).present?
+          .invalid-feedback Eメールを正しく入力してください
+        = fetch_errors(resource,:email)
+      .field
+        = f.label :password
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length}文字以上)
+        = f.password_field :password, autocomplete: "new-password", class: 'form-control', required: true, pattern: "^[A-Za-z0-9]{6,}$"
+        .invalid-feedback パスワードを正しく入力してください
+      .field
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', required: true, oninput: "CheckPassword(this)"
+        .invalid-feedback パスワード(確認用）を正しく入力してください   
+      .actions.text-center.my-3
+        = f.submit "新規登録", class: 'btn btn-outline-primary'
+    = render "devise/shared/links"
+- content_for :footer do
+  = javascript_include_tag 'form_validation.js'
+
+
+  

@@ -1,4 +1,14 @@
 - if notice
-  .alert.alert-success= notice
+  #noticeModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .alert.alert-success.mb-0
+          = notice
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+  - content_for :footer do
+    :javascript
+      $('#noticeModal').modal('show');
+      
 - if alert
   .alert.alert-danger= alert
